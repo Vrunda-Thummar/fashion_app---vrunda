@@ -1,29 +1,39 @@
-const mongoose = require('mongoose') 
- 
- const userSchema = mongoose.Schema({ 
-    firstName: String ,       // short heand method 
-    lastName:{ 
-         type: String, 
-    }, 
-    email:{ 
-        type: String, 
-    }, 
-    password:{ 
-        type: String, 
-    }, 
-    mobileNo: { 
-        type: Number, 
-    }, 
-    profileImage: { 
-        type: String, 
-    }, 
-    isDelete:{ 
-        type:Boolean, 
-        default:false 
-    } 
- },{ 
-    versionKey:false, 
-    timestamps:true 
- }); 
- 
- module.exports = mongoose.model('users' ,userSchema);
+const mongoose = require('mongoose');
+
+
+const userSchema = mongoose.Schema({
+    firstName: {
+        type: String
+    },
+    lastName: {
+        type: String
+    },
+    profileImage: {
+        type: String
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    mobileNo: {
+        type: String
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
+    },
+    isDelete: {
+        type: Boolean,
+        default: false
+    }
+}, {
+    timestamps: true,
+    versionKey: false
+});
+
+module.exports = mongoose.model('users', userSchema);
